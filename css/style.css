@@ -1,0 +1,342 @@
+/* ============================================================
+   style.css — 개인 이력서 웹사이트
+   ============================================================ */
+
+/* ---- 리셋 & 기본 ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary:    #2563eb;
+  --primary-dk: #1d4ed8;
+  --accent:     #0ea5e9;
+  --bg:         #f8fafc;
+  --surface:    #ffffff;
+  --border:     #e2e8f0;
+  --text:       #1e293b;
+  --text-muted: #64748b;
+  --radius:     12px;
+  --shadow:     0 4px 24px rgba(0,0,0,.07);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- HERO ---- */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: #fff;
+  padding: 72px 0 60px;
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-photo img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255,255,255,.6);
+  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  flex-shrink: 0;
+}
+
+.hero-greeting {
+  font-size: .95rem;
+  opacity: .85;
+  margin-bottom: 4px;
+}
+
+.hero-name {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -.5px;
+  margin-bottom: 6px;
+}
+
+.hero-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  opacity: .9;
+  margin-bottom: 12px;
+}
+
+.hero-bio {
+  font-size: .95rem;
+  opacity: .85;
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+
+.hero-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,.18);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 40px;
+  padding: 6px 16px;
+  font-size: .88rem;
+  font-weight: 500;
+  transition: background .2s;
+}
+
+.contact-btn:hover { background: rgba(255,255,255,.32); }
+
+/* ---- SECTION ---- */
+.section {
+  padding: 64px 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.section.visible { opacity: 1; transform: none; }
+.section:last-child { border-bottom: none; }
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  padding-left: 16px;
+  border-left: 4px solid var(--primary);
+  color: var(--text);
+}
+
+/* ---- SKILLS ---- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.skill-category {
+  font-size: .8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+.skill-items { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+.skill-item { display: flex; flex-direction: column; gap: 4px; }
+
+.skill-name { font-size: .88rem; font-weight: 500; }
+
+.skill-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 99px;
+  transition: width .6s ease;
+}
+
+/* ---- TIMELINE ---- */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+
+.timeline-entry {
+  position: relative;
+  padding: 0 0 32px 28px;
+  border-left: 2px solid var(--border);
+}
+
+.timeline-entry::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--primary);
+}
+
+.timeline-entry:last-child { border-left-color: transparent; }
+
+.timeline-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.timeline-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.timeline-period {
+  font-size: .82rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.timeline-sub {
+  font-size: .88rem;
+  color: var(--primary);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.timeline-desc {
+  list-style: disc inside;
+  font-size: .88rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ---- PROJECTS ---- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.12);
+}
+
+.project-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.project-img-placeholder {
+  width: 100%;
+  height: 160px;
+  background: linear-gradient(135deg, #e0e7ff, #bae6fd);
+}
+
+.project-body { padding: 20px; }
+
+.project-name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.project-desc {
+  font-size: .85rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+
+.tag {
+  font-size: .75rem;
+  font-weight: 500;
+  background: #eff6ff;
+  color: var(--primary);
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+.project-link {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--primary);
+  transition: color .2s;
+}
+.project-link:hover { color: var(--primary-dk); }
+
+/* ---- CERTS ---- */
+.cert-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+
+.cert-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+
+.cert-name { font-size: .95rem; font-weight: 600; }
+
+.cert-meta { font-size: .82rem; color: var(--text-muted); }
+
+/* ---- FOOTER ---- */
+.footer {
+  text-align: center;
+  padding: 32px 24px;
+  font-size: .82rem;
+  color: var(--text-muted);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+/* ---- 반응형 ---- */
+@media (max-width: 640px) {
+  .hero-inner { flex-direction: column; text-align: center; gap: 28px; }
+  .hero-contacts { justify-content: center; }
+  .hero-name { font-size: 1.9rem; }
+  .timeline-header { flex-direction: column; gap: 2px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 400px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
