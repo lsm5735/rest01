@@ -13,13 +13,15 @@
 :root {
   /* 주컬러 : 다크 그레이 */
   --c-primary:    #374151;
+  --c-primary-dk: #111827;          /* 더 어두운 그레이 — 히어로 그라디언트 시작 */
   --c-primary-50: rgba(55, 65, 81, 0.5);
 
-  /* 이벤트 컬러 : 오렌지 (라이트 모드) */
+  /* 포인트 컬러 : 주황 (라이트 모드) */
   --c-accent:   #ea580c;
   --c-accent-h: #c2410c;
+  --c-accent-bg: rgba(234, 88, 12, 0.1);  /* 오렌지 10% — 태그·배경 틴트 */
 
-  /* 팔레트 테마 쌍 (기본값 — palette 파일이 덮어씀) */
+  /* 팔레트 테마 쌍 — 보조 악센트 전용 (기본값, palette 파일이 덮어씀) */
   --c-ta: #1e3a5f;
   --c-tb: #3b82f6;
 
@@ -44,9 +46,11 @@
     --text:       #e6edf3;
     --text-muted: #8b949e;
     --shadow:     0 4px 24px rgba(0, 0, 0, .4);
-    /* 다크 모드에서 오렌지는 밝게 — 어두운 배경 위 가독성 확보 */
-    --c-accent:   #fb923c;
-    --c-accent-h: #f97316;
+    /* 다크 모드 오렌지 — 어두운 배경 위 가독성 확보 */
+    --c-accent:    #fb923c;
+    --c-accent-h:  #f97316;
+    --c-accent-bg: rgba(251, 146, 60, 0.12);
+    --c-primary-dk: #0d1117;
   }
 }
 
@@ -58,8 +62,10 @@ html[data-theme="dark"] {
   --text:       #e6edf3;
   --text-muted: #8b949e;
   --shadow:     0 4px 24px rgba(0, 0, 0, .4);
-  --c-accent:   #fb923c;
-  --c-accent-h: #f97316;
+  --c-accent:    #fb923c;
+  --c-accent-h:  #f97316;
+  --c-accent-bg: rgba(251, 146, 60, 0.12);
+  --c-primary-dk: #0d1117;
 }
 
 /* 라이트 모드 강제 */
@@ -100,7 +106,13 @@ a { color: inherit; text-decoration: none; }
    ============================================================ */
 .hero {
   position: relative;
-  background: linear-gradient(135deg, var(--c-ta) 0%, var(--c-tb) 100%);
+  /* 주컬러(다크 그레이) 그라디언트 + 우하단에 포인트(주황) 미묘하게 */
+  background: linear-gradient(
+    135deg,
+    var(--c-primary-dk) 0%,
+    var(--c-primary)    65%,
+    color-mix(in srgb, var(--c-accent) 22%, var(--c-primary)) 100%
+  );
   color: #fff;
   padding: 72px 0 60px;
   overflow: hidden;
@@ -154,8 +166,9 @@ a { color: inherit; text-decoration: none; }
   height: 160px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid rgba(255, 255, 255, .6);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, .25);
+  /* 포인트 컬러(주황) 테두리 */
+  border: 4px solid var(--c-accent);
+  box-shadow: 0 0 0 4px rgba(234, 88, 12, .25), 0 8px 32px rgba(0, 0, 0, .3);
 }
 
 .hero-greeting {
@@ -238,7 +251,8 @@ a { color: inherit; text-decoration: none; }
   color: var(--text);
   margin-bottom: 32px;
   padding-left: 16px;
-  border-left: 4px solid var(--c-tb);
+  /* 포인트 컬러(주황)로 섹션 강조 */
+  border-left: 4px solid var(--c-accent);
 }
 
 /* ============================================================
@@ -259,8 +273,8 @@ a { color: inherit; text-decoration: none; }
   transition: border-color .2s, box-shadow .2s;
 }
 .skill-card:hover {
-  border-color: var(--c-tb);
-  box-shadow: 0 8px 24px rgba(0,0,0,.1);
+  border-color: var(--c-accent);
+  box-shadow: 0 8px 24px rgba(234, 88, 12, .12);
 }
 
 .skill-category {
@@ -292,7 +306,8 @@ a { color: inherit; text-decoration: none; }
 .skill-fill {
   display: block;
   height: 100%;
-  background: linear-gradient(90deg, var(--c-ta), var(--c-tb));
+  /* 주컬러(다크 그레이) → 포인트(주황) 그라디언트 */
+  background: linear-gradient(90deg, var(--c-primary), var(--c-accent));
   border-radius: 99px;
   width: 0;
   transition: width .8s cubic-bezier(.4, 0, .2, 1);
@@ -316,9 +331,10 @@ a { color: inherit; text-decoration: none; }
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--c-tb);
+  /* 포인트 컬러(주황) 타임라인 마커 */
+  background: var(--c-accent);
   border: 2px solid var(--surface);
-  box-shadow: 0 0 0 2px var(--c-tb);
+  box-shadow: 0 0 0 2px var(--c-accent);
 }
 .timeline-entry:last-child { border-left-color: transparent; }
 
@@ -417,8 +433,9 @@ a { color: inherit; text-decoration: none; }
 .tag {
   font-size: .75rem;
   font-weight: 600;
-  background: color-mix(in srgb, var(--c-tb) 12%, var(--surface));
-  color: var(--c-tb);
+  /* 오렌지 10% 틴트 배경 + 주컬러 텍스트 */
+  background: var(--c-accent-bg);
+  color: var(--c-accent);
   border-radius: 6px;
   padding: 2px 8px;
 }
@@ -439,7 +456,7 @@ a { color: inherit; text-decoration: none; }
 .cert-item {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-left: 4px solid var(--c-tb);
+  border-left: 4px solid var(--c-accent);
   border-radius: var(--radius);
   padding: 14px 20px;
   display: flex;
@@ -452,6 +469,7 @@ a { color: inherit; text-decoration: none; }
 }
 .cert-item:hover {
   border-left-color: var(--c-accent);
+  background: color-mix(in srgb, var(--c-accent) 5%, var(--surface));
   transform: translateX(4px);
 }
 
