@@ -1,0 +1,18 @@
+/* ============================================================
+   palette-purple.css — 딥 퍼플 / 라벤더
+   ============================================================ */
+:root {
+  --c-ta: #3b0764;   /* Deep Purple */
+  --c-tb: #a855f7;   /* Vivid Purple */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --c-ta: #5b21b6;
+    --c-tb: #c084fc;
+  }
+}
+html[data-theme="dark"] {
+  --c-ta: #5b21b6;
+  --c-tb: #c084fc;
+}

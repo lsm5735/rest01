@@ -1,0 +1,18 @@
+/* ============================================================
+   palette-green.css — 다크 그린 / 연두
+   ============================================================ */
+:root {
+  --c-ta: #14532d;   /* Dark Forest Green */
+  --c-tb: #84cc16;   /* 연두 (Lime) */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --c-ta: #166534;
+    --c-tb: #a3e635;
+  }
+}
+html[data-theme="dark"] {
+  --c-ta: #166534;
+  --c-tb: #a3e635;
+}
