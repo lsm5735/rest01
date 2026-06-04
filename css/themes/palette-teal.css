@@ -1,0 +1,18 @@
+/* ============================================================
+   palette-teal.css — 다크 틸 / 민트
+   ============================================================ */
+:root {
+  --c-ta: #134e4a;   /* Dark Teal */
+  --c-tb: #14b8a6;   /* Teal / Mint */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --c-ta: #0f766e;
+    --c-tb: #2dd4bf;
+  }
+}
+html[data-theme="dark"] {
+  --c-ta: #0f766e;
+  --c-tb: #2dd4bf;
+}

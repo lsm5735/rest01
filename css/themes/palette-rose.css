@@ -1,0 +1,18 @@
+/* ============================================================
+   palette-rose.css — 다크 크림슨 / 로즈
+   ============================================================ */
+:root {
+  --c-ta: #881337;   /* Dark Crimson */
+  --c-tb: #fb7185;   /* Rose */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --c-ta: #9f1239;
+    --c-tb: #fda4af;
+  }
+}
+html[data-theme="dark"] {
+  --c-ta: #9f1239;
+  --c-tb: #fda4af;
+}
